@@ -1,4 +1,6 @@
+import { HttpParams, HttpResponse, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 interface Case {
   risk: string;
@@ -17,22 +19,25 @@ export class AppComponent {
   interactive: boolean = false;
   analysis: Case[] = [];
 
+  constructor(private http: HttpClient) {}
+
+  fetchRating(text: string): Observable<Case> {
+    const params = new HttpParams().append('text', text);
+    return this.http.get<Case>('http://127.0.0.1:5000/',
+      {params: params, responseType: 'json'})
+  }
+
   onCheck() {
-    let cases: Case[] = [];
-
-    cases.push({
-      risk: 'high',
-      title: 'High-risk Model',
-      description: 'Based on the AI analysis, the described AI use might be classified as high-risk under the EU AI regulation. Please contact a lawyer to clarify its safe use.'
+    this.analysis = [];
+    this.fetchRating(this.description).subscribe((data: Case) => {
+      this.analysis.push(data);
+      if (this.interactive == true) {
+        this.analysis.push({
+          risk: 'medium',
+          title: 'Human Interaction',
+          description: 'Any vendor is required to inform human users that they are interacting with an AI system.'
+        });
+      }
     })
-
-    if (this.interactive == true) {
-      cases.push({
-        risk: 'medium',
-        title: 'Human Interaction',
-        description: 'Any vendor is required to inform human users that they are interacting with an AI system.'
-      });
-    }
-    this.analysis = cases;
   }
 }
