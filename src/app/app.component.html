@@ -8,13 +8,11 @@
     <form class="form-floating">
       <div class="form-group mt-4">
         <label for="text" class="fw-bold">Model Description</label>
-        <textarea class="form-control" rows="8" id="text">
-Deloitte Czech Republic has developed an AI tool called Eagle Eye that uses open source intelligence to gather signals from the Internet. The AI software considers any information it finds about the company, customers, or market to which Deloitte assigns them as a signal. Using machine learning, Eagle Eye then begins to analyze these signals, correlating them and identifying specific patterns.
-AI can handle the vast amounts of data on the internet and find correlations between parameters that humans wouldn't even think of. Once these patterns are determined, Eagle Eye constantly monitors the Internet to look for them and provide alerts.</textarea>
+        <textarea class="form-control" rows="8" id="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
       <div class="form-check mt-2">
-        <input type="checkbox" class="form-check-input" id="customerContact">
-        <label class="form-check-label" for="customerContact">Model interacts with customer</label>
+        <input type="checkbox" class="form-check-input" id="interactive" [(ngModel)]="interactive" [ngModelOptions]="{standalone: true}">
+        <label class="form-check-label" for="interactive">Model interacts with human</label>
       </div>
       <div class="form-group mt-4">
         <label class="fw-bold" for="countries">Countries</label>
@@ -49,7 +47,7 @@ AI can handle the vast amounts of data on the internet and find correlations bet
         </select>
       </div>
 
-      <button class="float-end btn btn-primary mt-4">Check!</button>
+      <button class="float-end btn btn-primary mt-4" (click)="onCheck()">Check!</button>
     </form>
   </div>
   <div class="col col-md-4 col-sm-5 pt-3">
