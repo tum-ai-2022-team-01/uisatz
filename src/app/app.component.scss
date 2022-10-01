@@ -1,3 +1,11 @@
-/*h1, h2, h3, h4, h5, h2 input {
-  color: #F24B78
-}*/
+.dangerous {
+  border-color: #992720 !important; //#dc3545!important
+}
+
+.risky {
+  border-color: #ffc107!important
+}
+
+.acceptable {
+  border-color: #198754!important;
+}
