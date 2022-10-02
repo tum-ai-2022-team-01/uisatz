@@ -35,7 +35,7 @@ export class AppComponent {
         this.analysis.push({
           risk: 'medium',
           title: 'Human Interaction',
-          description: 'Any vendor is required to inform human users that they are interacting with an AI system.'
+          description: 'Please note that any vendor is required to inform human users that they are interacting with an AI system.'
         });
       }
     })
