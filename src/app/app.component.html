@@ -56,7 +56,7 @@
       <strong class="text-uppercase"><i>EU AI Regulation</i></strong>
       <div class="mt-2 px-2 border-start border-4" [class.dangerous]="item.risk=='high'" [class.risky]="item.risk=='medium'" [class.acceptable]="item.risk=='low'" *ngFor="let item of analysis">
         <strong>{{item.title}}</strong><br>
-        {{item.description}}
+        <div [innerHTML]="item.description"></div>
     </div>
   </div>
 </div>
